@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "functions": {
+    "api/handler.mjs": {
+      "includeFiles": "{public/**,node_modules/jsqr/dist/jsQR.js}",
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/handler?__autoid_path=/$1"
+    }
+  ]
+}

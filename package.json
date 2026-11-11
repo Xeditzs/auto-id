@@ -1,0 +1,20 @@
+{
+  "name": "autoid",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/start.mjs",
+    "test": "node --test"
+  },
+  "license": "UNLICENSED",
+  "description": "Local-first vehicle identity, care and assistance",
+  "dependencies": {
+    "jsqr": "1.4.0",
+    "pdf-lib": "1.17.1",
+    "postgres": "3.4.8",
+    "qrcode": "1.5.4"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}
