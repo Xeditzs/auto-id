@@ -5,7 +5,9 @@ import postgres from 'postgres';
 
 export function openDatabase(path, connectionString) {
   if (connectionString) {
-    const client = postgres(connectionString, { max: 1, prepare: false, ssl: 'verify-full', connect_timeout: 10, idle_timeout: 20 });
+    const ca = process.env.DATABASE_CA_CERT?.trim().replace(/\\n/g, '\n');
+    const ssl = ca ? { ca, rejectUnauthorized: true } : 'verify-full';
+    const client = postgres(connectionString, { max: 1, prepare: false, ssl, connect_timeout: 10, idle_timeout: 20 });
     function query(statement, args, connection = client) {
       let position = 0;
       return connection.unsafe(statement.replace(/\?/g, () => '$' + ++position), args);
